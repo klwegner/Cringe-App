@@ -218,8 +218,10 @@ input[type="text"] {
   height: 2vw;
   font-size: 2vw;
   color: white;
-  padding: 0;
+  padding:0.5vw 0 0;
   margin: 0;
+  border:none;
+
 }
 
 .dislike-button {
@@ -228,8 +230,9 @@ input[type="text"] {
   height: 2vw;
   font-size: 1.3vw;
   color: white;
-  padding: 0;
+  padding:0.5vw 0 0;
   margin-left: 0.5vw;
+  border:none;
 }
 
 .likes {
@@ -297,4 +300,5 @@ button a {
 .postTitle {
     max-width: 70%;
     font-size: 1.25vw;
+    padding-left:0.5vw;
 }
