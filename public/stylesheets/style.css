@@ -25,9 +25,8 @@ nav {
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  margin-top: 10px;
+  margin:0;
   color: white;
-  margin: 10px;
   background-color: rgb(39, 33, 33);
   border: 0.25vw solid darkgray;
   width: 60%;
@@ -199,12 +198,14 @@ button:hover {
 label {
   width: 10%;
   margin-left: 25%;
+  font-size: 2vw;
 }
 
 input[type="text"] {
   width: 50%;
-  height: 10vw;
+  height: 4vw;
   margin: 0 25%;
+  font-size: 1.5vw;
 }
 
 .individualPost {
@@ -257,10 +258,10 @@ input[type="text"] {
   height: 2.5vw;
   width: 100%;
   padding-bottom: 1vw;
-  margin:   0.5vw 0;
+  margin:   1vw 0 0;
   text-align: center;
   justify-content: space-between;
-  border-bottom: 0.25vw solid grey;
+  border-bottom: 0.1vw solid grey;
   background-color:rgba(45, 42, 42,0.8);
 }
 
@@ -301,4 +302,98 @@ button a {
     max-width: 70%;
     font-size: 1.25vw;
     padding-left:0.5vw;
+}
+
+.homeBtn:hover {
+  border: 1px solid grey;
+}
+
+.homeBtn {
+width: 33.33%;
+color: black;
+border: 1px solid black;
+text-align: center;
+font-family: "VT323";
+font-size: 5vw;
+margin: 2% 33.33% 2% 33.33%;
+
+}
+
+@media only screen and (max-width: 600px) {
+
+  nav {
+    font-family: "Share Tech Mono", monospace;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin:0;
+    color: white;
+    background-color: rgb(39, 33, 33);
+    border: 0.25vw solid darkgray;
+    width: 90%;
+    margin: 0 5% 2% 5%;
+    height: fit-content;
+  }
+
+  nav a{
+    font-size:3vw;
+  }
+
+  #feed {
+    width: 80%;
+    height: auto;
+    margin: 0 10%;
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: column;
+    align-items: center;
+  }
+  .imageHeader {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    width: 100%;
+height:fit-content;
+    justify-content: center;
+    font-size: 4vw;
+
+  }
+  .likes {
+ visibility: hidden;
+  }
+  .postTitle {
+font-size:5vw;
+}
+
+.likes-section {
+  display: flex;
+  font-size: 4vw;
+  max-width: 30%;
+  height:fit-content;
+  text-align: center;
+}
+
+.like-button {
+  background-color: rgba(0, 0, 0, 0);
+  width: fit-content;
+  height:fit-content;
+  font-size: 5vw;
+  color: white;
+  padding:4.5vw 0 0;
+  margin: 0;
+  border:none;
+
+}
+
+.dislike-button {
+  background-color: rgba(0, 0, 0, 0);
+  width: fit-content;
+  height:fit-content;
+  font-size: 4vw;
+  color: white;
+  padding:4vw 0 0;
+  margin-left: 2vw;
+  border:none;
+}
 }

@@ -38,21 +38,21 @@ router.get('/profile', isLoggedIn, (req, res) => {
   .populate('cringeArray')
     .then((myUser) => {
       console.log(myUser);
-        let numOfPosts = req.session.currentUser.cringeArray.length;
-        if (numOfPosts > 4 && numOfPosts < 10) {
+      console.log(myUser.cringeArray.length);
+        let numOfPosts = myUser.cringeArray.length;
+        let cringeLevel ='&#128118; Cringe Kid &#128556;'
+        console.log(numOfPosts);
+        if (numOfPosts > 4) {
             cringeLevel = '&#128124; Kinda Cringe &#128556;'
         }
-        if (numOfPosts > 10 && numOfPosts < 20) {
+        if (numOfPosts > 10) {
           cringeLevel ='&#128130; Captain Cringe &#128556;'
         }
-        if (numOfPosts > 20 && numOfPosts < 30) {
+        if (numOfPosts > 20) {
           cringeLevel = '&#127863; Cringe Conisseur &#128556;'
         }
-        if (numOfPosts > 30) {
+        else if (numOfPosts > 30) {
             cringeLevel = '&#128081; King of Cringe &#128556;'
-        }
-        else {
-          cringeLevel ='&#128118; Cringe Kid &#128556;'
         }
 
       res.render('users/user-profile', { userInSession: myUser, cringeLevel });
