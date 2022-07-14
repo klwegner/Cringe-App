@@ -1,0 +1,19 @@
+<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
+
+<div id="feed">
+
+{{#each allPosts}}
+<div>
+    <div class="imageHeader">
+    <h2 class="postTitle">{{this.title}}</h2>
+<div class = "likes-section">
+        <div class="likes">0 Likes</div>
+    <button class="like-button">&hearts;</button>
+</div>
+</div>
+   <a href="/post/{{this._id}}"> <img src="{{this.imageUrl}}"> </a>
+</div>
+{{/each}}
+
+</div>
+

@@ -1,0 +1,28 @@
+{{#if userInSession}}
+
+<div class ="form-group">
+  <label>Edit Profile Picture </label>
+  <input type="file" name="profileImage" class="form-control-file" />
+  <button type="submit">Upload</button>
+  </label>
+</div>
+
+ <div class="editInfo">
+
+  {{!-- button method --}}
+                <h2>Edit {{userInSession.email}} Information</h2>
+                <hr>
+                <form action="/profile/edit" method="POST" enctype="multipart/form-data">
+                    <label>
+                        about: <input type="text" name="about" value="{{userInSession.about}}">
+                    </label>
+                    <button type="submit"> Submit Changes
+                    </button>
+            </form>
+     </div>
+
+{{else}}
+
+  Please login to see your profile.
+
+{{/if}}

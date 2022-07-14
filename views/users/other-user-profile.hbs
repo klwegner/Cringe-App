@@ -1,0 +1,17 @@
+ Other User Info
+  <div id="profileMainArea">
+    <div id="pfp">
+<img src="{{User.profileImage}}/>
+    </div>
+ <div id="cringeRating">{{{cringeLevel}}}</div>   
+         </h2>
+      <p>{{userInSession.about}}</p>
+      </div>
+
+
+  <h2>Their Cringe</h2>
+      {{#each User.cringeArray}}
+    <div>
+      <a href="/post/{{this._id}}"><img src="{{this.imageUrl}}" /></a>
+    </div>
+{{/each}}

@@ -1,0 +1,119 @@
+{{#if userInSession}}
+  <div id="profileMainArea">
+    <div id="pfp">
+<img src="{{userInSession.profileImage}} height="400px"/>
+    </div>
+
+    <div id="profileInfo">
+      <h2> Greetings {{userInSession.email}}</h2>
+      <h2> 
+     <div id="cringeRating">{{{cringeLevel}}}</div>   
+         </h2>
+      <p>{{userInSession.about}}</p>
+      <button><a href="/profile/edit">Edit Profile</a></button>
+    </div>
+  </div>
+  <h2>Your Cringe</h2>
+  <div id="myPosts">
+
+{{#each userInSession.cringeArray}}
+    <div>
+      <a href="/post/{{this._id}}"><img src="{{this.imageUrl}}" /></a>
+    </div>
+{{/each}}
+
+</div>
+  <h2> Cringe Comrades</h2>
+  <div id="friendsList">
+    <div>
+      <img src="/images/200pixel.png" />
+    </div>
+
+    <div>
+      <img src="/images/200pixel.png" />
+    </div>
+
+    <div>
+      <img src="/images/200pixel.png" />
+    </div>
+
+    <div>
+      <img src="/images/200pixel.png" />
+    </div>
+
+    <div>
+      <img src="/images/200pixel.png" />
+    </div>
+
+    <div>
+      <img src="/images/200pixel.png" />
+    </div>
+
+    <div>
+      <img src="/images/200pixel.png" />
+    </div>
+
+    <div>
+      <img src="/images/200pixel.png" />
+    </div>
+
+    <div>
+      <img src="/images/200pixel.png" />
+    </div>
+
+    <div>
+      <img src="/images/200pixel.png" />
+    </div>
+
+  </div>
+  <h2> Favorites</h2>
+
+  <div id="favorites">
+
+    <div>
+      <img src="/images/200pixel.png" />
+    </div>
+
+    <div>
+      <img src="/images/200pixel.png" />
+    </div>
+
+    <div>
+      <img src="/images/200pixel.png" />
+    </div>
+    <div>
+      <img src="/images/200pixel.png" />
+    </div>
+
+    <div>
+      <img src="/images/200pixel.png" />
+    </div>
+
+    <div>
+      <img src="/images/200pixel.png" />
+    </div>
+
+    <div>
+      <img src="/images/200pixel.png" />
+    </div>
+
+    <div>
+      <img src="/images/200pixel.png" />
+    </div>
+
+    <div>
+      <img src="/images/200pixel.png" />
+    </div>
+
+    <div>
+      <img src="/images/200pixel.png" />
+    </div>
+
+  </div>
+
+ <button><a href="/">Home</a></button>
+{{else}}
+
+  Please login to see your profile.
+
+{{/if}}
