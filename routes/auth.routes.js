@@ -38,8 +38,7 @@ router.get('/profile', isLoggedIn, (req, res) => {
   .populate('cringeArray')
     .then((myUser) => {
       console.log(myUser);
-let cringeLevel = ' &#128118; Cringe Kid &#128556;'
-        let numOfPosts = myUser.cringeArray.length;
+        let numOfPosts = req.session.currentUser.cringeArray.length;
         if (numOfPosts > 4 && numOfPosts < 10) {
             cringeLevel = '&#128124; Kinda Cringe &#128556;'
         }
@@ -49,8 +48,11 @@ let cringeLevel = ' &#128118; Cringe Kid &#128556;'
         if (numOfPosts > 20 && numOfPosts < 30) {
           cringeLevel = '&#127863; Cringe Conisseur &#128556;'
         }
-        else {
+        if (numOfPosts > 30) {
             cringeLevel = '&#128081; King of Cringe &#128556;'
+        }
+        else {
+          cringeLevel ='&#128118; Cringe Kid &#128556;'
         }
 
       res.render('users/user-profile', { userInSession: myUser, cringeLevel });
@@ -58,35 +60,50 @@ let cringeLevel = ' &#128118; Cringe Kid &#128556;'
     .catch((err) => res.send(err));
 })
 
-router.get('/profile/:userId', (req, res) => {
-  const thisUserId = req.params.userId;
-  console.log('it worked!')
-  User.findById(thisUserId)
-  .then((result)=>res.render('users/other-user-profile.hbs', result))
-  .catch((err) => res.send(err));
-})
+
 
 router.get('/profile/edit', isLoggedIn, (req, res) => {
 res.render('edit-profile.hbs', {userInSession: req.session.currentUser})
 })
 
-
-router.post('/profile/edit', isLoggedIn, fileUploader.single("profileImage"), (req, res) => {
-
-let myProfileImage;
-if(req.file && req.file.path){
-  myProfileImage = req.file.path
-} else {
-  myProfileImage = req.session.currentUser.profileImage
-}
-
-User.findByIdAndUpdate(req.session.currentUser._id, {about: req.body.about, profileImage: myProfileImage}, {new: true})
+router.post('/profile/edit', isLoggedIn, (req, res) => {
+User.findByIdAndUpdate(req.session.currentUser._id, {about: req.body.about}, {new: true})
 .then((updatedUser) =>{
   req.session.currentUser = updatedUser;
   res.redirect('/profile')
 })
 .catch(error => console.log(`Error while updating profile: ${error}`));
 })
+
+
+  
+  // router.post('/profile/edit', isLoggedIn, fileUploader.single("profileImage"), (req, res) => {
+  // let myProfileImage;
+  // if(req.file && req.file.path){
+  //   myProfileImage = req.file.path
+  // } else {
+  //   myProfileImage = req.session.currentUser.profileImage
+  // }
+  
+  // // User.findByIdAndUpdate(req.session.currentUser._id, {about: req.body.about, profileImage: myProfileImage}, {new: true})
+  // console.log(req.session)
+  // User.findByIdAndUpdate(req.session.currentUser._id, {about: req.body.about}, {new:true})
+  // .then((updatedUser) =>{
+  //   req.session.currentUser = updatedUser;
+  //   res.redirect('/profile')
+  // })
+  // .catch(error => console.log(`Error while updating profile: ${error}`));
+  // })
+  
+  
+
+// router.get('/profile/:userId', (req, res) => {
+//   const thisUserId = req.params.userId;
+//   console.log('it worked!')
+//   User.findById(thisUserId)
+//   .then((result)=>res.render('users/other-user-profile.hbs', result))
+//   .catch((err) => res.send(err));
+// })
 
 
 
@@ -127,7 +144,6 @@ router.get('/logout', (req, res, next) => {
     res.redirect('/');
   });
 });
-
 
 module.exports = router;
 

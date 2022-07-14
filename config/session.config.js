@@ -1,11 +1,7 @@
 const session = require('express-session');
-
 const MongoStore = require('connect-mongo');
-
 const mongoose = require('mongoose');
-
 require('dotenv').config();
-
 
 module.exports = app => {
     app.set('trust proxy', 1);
@@ -23,18 +19,7 @@ module.exports = app => {
         }, // ADDED code below !!!
         store: MongoStore.create({
           mongoUrl: process.env.MONGODB_URI || 'mongodb://localhost/Cringe'
-  
-          // ttl => time to live
-          // ttl: 60 * 60 * 24 // 60sec * 60min * 24h => 1 day
         })
       })
     );
   };
-  // ...
-
-mongoose
-.connect(process.env.MONGODB_URI)
-.then(x => console.log(`Connected the Database: "${x.connections[0].name}"`))
-.catch(err => console.error('Error connecting to mongo', err));
-
-// ...

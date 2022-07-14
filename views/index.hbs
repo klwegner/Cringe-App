@@ -7,8 +7,10 @@
     <div class="imageHeader">
     <h2 class="postTitle">{{this.title}}</h2>
 <div class = "likes-section">
-        <div class="likes">0 Likes</div>
-    <button class="like-button">&hearts;</button>
+<div class= "likes">{{this.likedMe}} Likes</div>
+    <button class= "like-button" data-user-id="{{this._id}}">&hearts;</button>
+    <button class= "dislike-button" data-user-id="{{this._id}}">&#10060;</button>
+            
 </div>
 </div>
    <a href="/post/{{this._id}}"> <img src="{{this.imageUrl}}"> </a>
@@ -16,4 +18,8 @@
 {{/each}}
 
 </div>
+
+<script src="/js/views/post.js"></script>
+<script src='https://unpkg.com/axios/dist/axios.min.js'></script>
+
 

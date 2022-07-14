@@ -21,11 +21,9 @@ const userSchema = new Schema(
 
         profileImage: {
             type: String,
-
         },
 
         cringeArray:  [{ type: Schema.Types.ObjectId, ref: 'Cringepost' }]
-    
     },
     {
         timestamps: true

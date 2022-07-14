@@ -22,6 +22,16 @@ const projectName = "Cringe";
 
 app.locals.appTitle = `${(projectName)} created with IronLauncher`;
 
+app.use((req, res, next) => {
+    if(req.session.currentUser === undefined){
+        app.set("view options", {layout:'loggedOutLayout'} )
+    }
+    else{
+        app.set("view options", {layout:'layout'})
+    }
+    next();
+})
+
 const index = require("./routes/index.routes");
 app.use("/", index);
 
@@ -30,6 +40,8 @@ app.use('/', authRoutes);
 
 const postRoutes = require('./routes/posts.routes.js');
 app.use('/', postRoutes);
+
+
 
 require("./error-handling")(app);
 
