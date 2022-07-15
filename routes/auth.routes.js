@@ -95,15 +95,78 @@ User.findByIdAndUpdate(req.session.currentUser._id, {about: req.body.about}, {ne
   // .catch(error => console.log(`Error while updating profile: ${error}`));
   // })
   
+  router.get('/profile', isLoggedIn, (req, res) => {
+    User.findById(req.session.currentUser._id)
+    .populate('cringeArray')
+      .then((myUser) => {
+        console.log(myUser);
+        console.log(myUser.cringeArray.length);
+          let numOfPosts = myUser.cringeArray.length;
+          let cringeLevel ='&#128118; Cringe Kid &#128556;'
+          console.log(numOfPosts);
+          if (numOfPosts > 4) {
+              cringeLevel = '&#128124; Kinda Cringe &#128556;'
+          }
+          if (numOfPosts > 10) {
+            cringeLevel ='&#128130; Captain Cringe &#128556;'
+          }
+          if (numOfPosts > 20) {
+            cringeLevel = '&#127863; Cringe Conisseur &#128556;'
+          }
+          else if (numOfPosts > 30) {
+              cringeLevel = '&#128081; King of Cringe &#128556;'
+          }
   
+        res.render('users/user-profile', { userInSession: myUser, cringeLevel });
+      })
+      .catch((err) => res.send(err));
+  })
 
-// router.get('/profile/:userId', (req, res) => {
-//   const thisUserId = req.params.userId;
-//   console.log('it worked!')
-//   User.findById(thisUserId)
-//   .then((result)=>res.render('users/other-user-profile.hbs', result))
-//   .catch((err) => res.send(err));
-// })
+
+
+  // router.get('/post/profile/:userId', (req, res) => {
+  //   const { userId } = req.params;
+  //   console.log(userId);
+  //   User.findById(userId)
+  //   .populate('cringeArray')
+  //   .then((result)=>{
+  //     console.log('hello', result.cringeArray);
+  //     console.log(result.cringeArray.length);
+  //     let numOfPosts = myUser.cringeArray.length;
+      // let cringeLevel ='&#128118; Cringe Kid &#128556;'
+      // console.log(cringeLevel);
+      // if (numOfPosts > 4) {
+      //     cringeLevel = '&#128124; Kinda Cringe &#128556;'
+      // }
+      // if (numOfPosts > 10) {
+      //   cringeLevel ='&#128130; Captain Cringe &#128556;'
+      // }
+      // if (numOfPosts > 20) {
+      //   cringeLevel = '&#127863; Cringe Conisseur &#128556;'
+      // }
+      // else if (numOfPosts > 30) {
+      //     cringeLevel = '&#128081; King of Cringe &#128556;'
+      // }
+      // res.render('users/other-user-profile.hbs', { cringeLevel: cringeLevel, result: result.cringeArray });
+  //     res.render('users/other-user-profile.hbs', { result: result.cringeArray });
+  // })
+  //   .catch((err) => res.send(err));
+  // })
+
+
+
+//original works
+router.get('/post/profile/:userId', (req, res) => {
+  const { userId } = req.params;
+  console.log(userId);
+  console.log('it worked!')
+  User.findById(userId)
+  .then((result)=>{
+    console.log(result)
+    res.render('users/other-user-profile.hbs', result)
+})
+  .catch((err) => res.send(err));
+})
 
 
 

@@ -10,13 +10,20 @@ a {
   color: white;
 }
 
+
+
 #title {
   text-align: center;
   font-size: 3.2vw;
   letter-spacing: 3.2vw;
   margin: 0 10%;
+  padding-left:2.6vw;
   width: 80%;
   display: inline-block;
+}
+
+#title img {
+  margin-left:2.6vw;
 }
 
 nav {
@@ -87,8 +94,15 @@ p {
   display: flex;
   flex-direction: row;
   width: 80%;
-  margin: 0 10%;
+  margin: 2% 10% 0;
   justify-content: center;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-left:2%;
 }
 
 #profileInfo {
@@ -155,6 +169,7 @@ p {
   border-radius: 50%;
   width: 20vw;
   height: auto;
+  margin-right:2%;
 }
 
 .form {
@@ -396,4 +411,40 @@ font-size:5vw;
   margin-left: 2vw;
   border:none;
 }
+
+button {
+  width: 20%;
+  color: black;
+  border: 1px solid black;
+  text-align: center;
+  font-family: "VT323";
+  font-size: 3vw;
+  margin: 2% 40% 0 40%;
+}
+
+.form button{
+  width: 20%;
+  color: black;
+  border: 1px solid black;
+  text-align: center;
+  font-family: "VT323";
+  font-size: 3vw;
+  margin: 2% 40% 0 40%;
+}
+
+input[type="text"] {
+  width: 50%;
+  height: 6vw;
+  margin: 0 25%;
+  font-size: 3vw;
+}
+
+#profileInfo p{
+  font-size: 3vw;
+}
+
+#profileInfo h2{
+  font-size: 4vw;
+}
+
 }

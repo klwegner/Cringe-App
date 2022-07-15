@@ -38,12 +38,15 @@ router.get("/post/:postId", (req, res) => {
   const myPostId = req.params.postId;
   CringePost.findById(myPostId)
     .then((postResult) => {
+      console.log(postResult)
       let isMyPost = false;
       if (`${req.session.currentUser._id}` == `${postResult.userId}`) {
         isMyPost = true;
       }
       postResult.isMyPost = isMyPost;
-      res.render("cringepost.hbs", postResult);
+    
+      // res.render("cringepost.hbs", postResult); old working
+      res.render("cringepost.hbs", {postResult:postResult}) //new
     })
     .catch((error) => console.log(`Error while finding a new post: ${error}`));
 });
