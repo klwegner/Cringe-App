@@ -1,67 +1,26 @@
 
   <div id="profileMainArea">
     <div id="pfp">
-<img src="/images/cringeman.png"/>
+<img src="{{profile.profileImage}}"/>
     </div>
 <div class="column">
-    <h2>Hello {{email}} </h2>
+    <h2>Hello {{profile.email}} </h2>
     <br>
 
  <div id="cringeRating">
-  <h2>&#128118; Cringe Kid &#128556;</h2>
-  {{!-- {{cringeLevel.cringeLevel}} --}}
+  <h2> {{cringeLevel}}</h2>
+ 
   </div>  
-
-      <p>{{about}}</p>
+      <p>{{profile.about}}</p>
       </div>
       </div> 
-  <h2>Their Cringe</h2>
 
-<div id="friendsList">
-    <div>
-      <img src="/images/200pixel.png" />
-    </div>
-
-    <div>
-      <img src="/images/200pixel.png" />
-    </div>
-
-    <div>
-      <img src="/images/200pixel.png" />
-    </div>
-
-    <div>
-      <img src="/images/200pixel.png" />
-    </div>
-
-    <div>
-      <img src="/images/200pixel.png" />
-    </div>
-
-    <div>
-      <img src="/images/200pixel.png" />
-    </div>
-
-    <div>
-      <img src="/images/200pixel.png" />
-    </div>
-
-    <div>
-      <img src="/images/200pixel.png" />
-    </div>
-
-    <div>
-      <img src="/images/200pixel.png" />
-    </div>
-
-    <div>
-      <img src="/images/200pixel.png" />
-    </div>
-
-  </div>
+  <h2>Their Cringe</h2> 
   
-      {{!-- {{#each result}}
+    <div id="myPosts">
+      {{#each profile.cringeArray}}
     <div>
-      <a href="/post/{{_id}}"><img src="{{imageUrl}}" /></a>
+      <a href="/post/{{this._id}}"><img src="{{this.imageUrl}}" /></a>
     </div>
-{{/each}} --}}
+{{/each}}
+</div>

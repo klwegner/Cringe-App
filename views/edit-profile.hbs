@@ -1,14 +1,6 @@
 {{#if userInSession}}
 
-{{!-- <div class ="form-group">
-  <label>Edit Profile Picture </label>
-  <input type="file" name="profileImage" class="form-control-file" />
-  <button type="submit">Upload</button>
-  </label>
-</div>
 
-
- --}}
 
  <div class="editInfo">
 
@@ -16,7 +8,12 @@
                 <h2>Howdy there, {{userInSession.email}} 
        <br> Edit Your Information</h2>
                 <hr>
-                <form action="/profile/edit" method="POST">
+                <form action="/profile/edit" method="POST" enctype="multipart/form-data">
+    <div class ="form-group">
+  <label>Edit Profile Picture </label>
+  <input type="file" name="profileImage" class="form-control-file" />
+  </label>
+</div>
                     <label>
                         about: <input type="text" name="about" value="{{userInSession.about}}">
                     </label>

@@ -66,34 +66,32 @@ router.get('/profile/edit', isLoggedIn, (req, res) => {
 res.render('edit-profile.hbs', {userInSession: req.session.currentUser})
 })
 
-router.post('/profile/edit', isLoggedIn, (req, res) => {
-User.findByIdAndUpdate(req.session.currentUser._id, {about: req.body.about}, {new: true})
-.then((updatedUser) =>{
-  req.session.currentUser = updatedUser;
-  res.redirect('/profile')
-})
-.catch(error => console.log(`Error while updating profile: ${error}`));
-})
+// router.post('/profile/edit', isLoggedIn, (req, res) => {
+// User.findByIdAndUpdate(req.session.currentUser._id, {about: req.body.about}, {new: true})
+// .then((updatedUser) =>{
+//   req.session.currentUser = updatedUser;
+//   res.redirect('/profile')
+// })
+// .catch(error => console.log(`Error while updating profile: ${error}`));
+// })
 
 
   
-  // router.post('/profile/edit', isLoggedIn, fileUploader.single("profileImage"), (req, res) => {
-  // let myProfileImage;
-  // if(req.file && req.file.path){
-  //   myProfileImage = req.file.path
-  // } else {
-  //   myProfileImage = req.session.currentUser.profileImage
-  // }
-  
-  // // User.findByIdAndUpdate(req.session.currentUser._id, {about: req.body.about, profileImage: myProfileImage}, {new: true})
-  // console.log(req.session)
-  // User.findByIdAndUpdate(req.session.currentUser._id, {about: req.body.about}, {new:true})
-  // .then((updatedUser) =>{
-  //   req.session.currentUser = updatedUser;
-  //   res.redirect('/profile')
-  // })
-  // .catch(error => console.log(`Error while updating profile: ${error}`));
-  // })
+  router.post('/profile/edit', isLoggedIn, fileUploader.single("profileImage"), (req, res) => {
+  let myProfileImage;
+  console.log(req.file, req.session);
+  if(req.file && req.file.path){
+    myProfileImage = req.file.path
+  } else {
+    myProfileImage = req.session.currentUser.profileImage
+  }
+  User.findByIdAndUpdate(req.session.currentUser._id, {about: req.body.about, profileImage: myProfileImage}, {new: true})
+  .then((updatedUser) =>{
+    req.session.currentUser = updatedUser;
+    res.redirect('/profile')
+  })
+  .catch(error => console.log(`Error while updating profile: ${error}`));
+  })
   
   router.get('/profile', isLoggedIn, (req, res) => {
     User.findById(req.session.currentUser._id)
@@ -124,49 +122,47 @@ User.findByIdAndUpdate(req.session.currentUser._id, {about: req.body.about}, {ne
 
 
 
-  // router.get('/post/profile/:userId', (req, res) => {
-  //   const { userId } = req.params;
-  //   console.log(userId);
-  //   User.findById(userId)
-  //   .populate('cringeArray')
-  //   .then((result)=>{
-  //     console.log('hello', result.cringeArray);
-  //     console.log(result.cringeArray.length);
-  //     let numOfPosts = myUser.cringeArray.length;
-      // let cringeLevel ='&#128118; Cringe Kid &#128556;'
-      // console.log(cringeLevel);
-      // if (numOfPosts > 4) {
-      //     cringeLevel = '&#128124; Kinda Cringe &#128556;'
-      // }
-      // if (numOfPosts > 10) {
-      //   cringeLevel ='&#128130; Captain Cringe &#128556;'
-      // }
-      // if (numOfPosts > 20) {
-      //   cringeLevel = '&#127863; Cringe Conisseur &#128556;'
-      // }
-      // else if (numOfPosts > 30) {
-      //     cringeLevel = '&#128081; King of Cringe &#128556;'
-      // }
-      // res.render('users/other-user-profile.hbs', { cringeLevel: cringeLevel, result: result.cringeArray });
-  //     res.render('users/other-user-profile.hbs', { result: result.cringeArray });
-  // })
-  //   .catch((err) => res.send(err));
-  // })
+  router.get('/post/profile/:userId', (req, res) => {
+    const { userId } = req.params;
+    console.log(userId);
+    User.findById(userId)
+    .populate('cringeArray')
+    .then((result)=>{
+      console.log('hello', result.cringeArray);
+      let numOfPosts = result.cringeArray.length;
+      let cringeLevel ='&#128118; Cringe Kid &#128556;'
+      console.log(cringeLevel);
+      if (numOfPosts > 4) {
+          cringeLevel = '&#128124; Kinda Cringe &#128556;'
+      }
+      if (numOfPosts > 10) {
+        cringeLevel ='&#128130; Captain Cringe &#128556;'
+      }
+      if (numOfPosts > 20) {
+        cringeLevel = '&#127863; Cringe Conisseur &#128556;'
+      }
+      else if (numOfPosts > 30) {
+          cringeLevel = '&#128081; King of Cringe &#128556;'
+      }
+      res.render('users/other-user-profile.hbs', { cringeLevel: cringeLevel, profile: result });
+  })
+    .catch((err) => res.send(err));
+  })
 
 
 
 //original works
-router.get('/post/profile/:userId', (req, res) => {
-  const { userId } = req.params;
-  console.log(userId);
-  console.log('it worked!')
-  User.findById(userId)
-  .then((result)=>{
-    console.log(result)
-    res.render('users/other-user-profile.hbs', result)
-})
-  .catch((err) => res.send(err));
-})
+// router.get('/post/profile/:userId', (req, res) => {
+//   const { userId } = req.params;
+//   console.log(userId);
+//   console.log('it worked!')
+//   User.findById(userId)
+//   .then((result)=>{
+//     console.log(result)
+//     res.render('users/other-user-profile.hbs', result)
+// })
+//   .catch((err) => res.send(err));
+// })
 
 
 
